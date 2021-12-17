@@ -1,5 +1,5 @@
 # cassandra-schema-manager
-This is a  Python script that manages cassandra schema. Also Sample helm chart is given Charts directory. Helm Chart deploys a  Cron Job in Kubernetes . This job parses Config Maps and executes the python script. Helm Chart requires certain format of Config Maps should follow below format
+This is a  Python script that manages cassandra schema. Also Sample helm chart is given in Charts directory. Helm Chart deploys a  Cron Job in Kubernetes . This job parses Config Maps and executes the python script. Helm Chart requires certain format of Config Maps should follow below format
 
 #### Config Map should have following style -
 

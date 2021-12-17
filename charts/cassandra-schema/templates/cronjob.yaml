@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: cassmigrate
 spec:
-  schedule: "*/20 * * * *"
+  schedule: "*/10 * * * *"
   jobTemplate:
     spec:
       template:

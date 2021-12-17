@@ -1,0 +1,4 @@
+cassandra:
+  contact_points: "k8ssandra-dc1-all-pods-service"
+  replication: "{'class': 'NetworkTopologyStrategy', 'dc1': 1 }"
+  secret: "k8ssandra-superuser"

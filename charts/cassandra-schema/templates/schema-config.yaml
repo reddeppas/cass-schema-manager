@@ -1,0 +1,19 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-schema
+  namespace: default
+data:
+    test_schema.json: |-
+        {
+            "keyspacename": "test",
+            "schemaversions": {
+                "1": [
+                    "CREATE TABLE IF NOT EXISTS test.schema_migration (applied_successful boolean, version int, script_name varchar, script text, executed_at timestamp, PRIMARY KEY (applied_successful, version))"
+                    ],
+                "2": [
+                    "CREATE TABLE IF NOT EXISTS test.schema_migration_leader (keyspace_name text, leader uuid, took_lead_at timestamp, leader_hostname text, PRIMARY KEY (keyspace_name))"
+                    ]
+            }
+        }

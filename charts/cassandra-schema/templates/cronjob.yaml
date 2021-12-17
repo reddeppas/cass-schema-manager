@@ -1,0 +1,38 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cassmigrate
+spec:
+  schedule: "*/20 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cassmigrate
+            image: reddeppas/schema_manage:0.3
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cassandra.secret }}
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cassandra.secret }}
+                  key: password
+            - name: CONTACT_POINTS
+              value: "{{ .Values.cassandra.contact_points }}"
+            - name: REPLICATION
+              value: "{{ .Values.cassandra.replication }}"
+            volumeMounts:
+            - name:  test-schema-config
+              mountPath: /app/test_schema.json
+              subPath: test_schema.json
+          volumes:
+          - name: test-schema-config
+            configMap:
+              name: test-schema
+          restartPolicy: OnFailure
